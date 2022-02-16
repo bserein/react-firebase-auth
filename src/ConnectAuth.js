@@ -16,3 +16,4 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 //you can just put export behind it and just import this app anywhere now
+//you acquire this from firebase
