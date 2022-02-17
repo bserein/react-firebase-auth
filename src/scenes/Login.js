@@ -1,15 +1,21 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { app } from '../ConnectAuth'
 
-export default function Login({ setUser }){
+export default function Login({ user, setUser }){
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const navigate = useNavigate();
 const provider = new GoogleAuthProvider();
+useEffect(() => {
+    const localUser = localStorage.getItem('displayName')
+    console.log(localUser, '<-- is localUser from LS')
+    if(localUser) {
+        setUser(localUser)}
+},[])
 // this is a class so you substantiate it with new
-//this will be for the google sign in
+//^^this will be for the google sign in
 const auth = getAuth(app);
 const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -32,12 +38,22 @@ const handleGoogleLogin = () => {
     .then(result => {
         //setUser
         setUser(result.user)
+
+        localStorage.setItem('displayName', result.user.displayName);
+        localStorage.setItem('avatar', result.user.photoURL)
+        localStorage.setItem('uid', result.user.uid)
+        //this will send the info to the local storage of the users display name
+        //this will save a cookie in your local storage that has your display name saved but it doesnt remember becuase logic hasnt been added 
+
+        console.log('this is my result', result.user.displayName)
+        //this way so you can see the user id of whos accessing it
         //navigate to home
         navigate('/')
         //this will take you to the welcome page
     })
     .catch(alert)
 }
+console.log('here is my user from the parent App component',user)
     return (
         <>
         <h1>Login</h1>
