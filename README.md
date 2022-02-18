@@ -8,6 +8,6 @@ to run the project use => `npm run start`
 ## Note:
 Credentials file not needed
 
-for more info on authentication [link here](https:firebase.com)
+for more info on authentication [link here](https://firebase.google.com/docs/auth)
 
 ![Screenshot of the project](Screenshot.png)

@@ -18,10 +18,17 @@ body {
   font-family: 'Noto Sans', sans-serif;
   background-color: #f7f7fc;
 }
-
+/* changes color/font etc when page reaches 600px */
 @media (max-width: 600px) {
   body {
-    background-color: aquamarine;
+    background-color: lightgoldenrodyellow;
+  }
+  h1{
+    font-size:55px;
   }
 }
-
+@media(max-height:300px){
+  body{
+    background-color:aliceblue;
+  }
+}

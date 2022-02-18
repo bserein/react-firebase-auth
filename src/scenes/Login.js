@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { app } from '../ConnectAuth'
+import React from "react";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { app } from '../ConnectAuth';
+import Button from "react-bootstrap/Button"; //this is the react version of bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";// allows for importing of CSS for bootstrap
 
 export default function Login({ user, setUser }){
 const [email, setEmail] = useState("");
@@ -64,16 +67,16 @@ console.log('here is my user from the parent App component',user)
             {/* with the type email it already lets it know that you need to put the @ for the email */}
             <label>Password: <input type="password" value={password} onChange={e => setPassword(e.target.value)}/></label> <br />
             {/* this took control of the inputs and have a prevent default so the page doesnt reload when its inputted */}
-            <input type="submit" value="Login"/>
+            <Button  variant="primary" type="submit" value="Login">Login</Button> <br/><br/>
         </form>
-        <button 
+        <Button 
         onClick={handleGoogleLogin}
         // clickable function 
         style={{
             backgroundColor: 'black', 
             color: 'white', 
             border: 'none'}}>
-                Sign in with Google</button>
+                Sign in with Google</Button>
         <p>Not a user? <Link to="/signup">Sign up</Link></p>
         </>
     )
